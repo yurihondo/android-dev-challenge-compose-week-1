@@ -19,8 +19,12 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.core.*
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -32,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.home.OnListItemClicked
 import com.example.androiddevchallenge.home.PuppyHome
 import com.example.androiddevchallenge.home.SplashScreen
+import com.example.androiddevchallenge.home.SplashState
 import com.example.androiddevchallenge.ui.theme.PuppyTheme
 
 class MainActivity : AppCompatActivity() {
@@ -96,8 +101,6 @@ private fun MainContent(
         )
     }
 }
-
-enum class SplashState { Shown, Completed }
 
 @Preview("Light Theme", widthDp = 360, heightDp = 640)
 @Composable

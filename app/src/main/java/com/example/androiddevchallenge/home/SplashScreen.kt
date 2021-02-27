@@ -16,6 +16,8 @@ import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.R
 import kotlinx.coroutines.delay
 
+enum class SplashState { Shown, Completed }
+
 private const val SplashWaitTime: Long = 2000
 
 @Composable
