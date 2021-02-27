@@ -15,7 +15,6 @@
  */
 package com.example.androiddevchallenge
 
-import android.net.Uri
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
@@ -30,7 +29,6 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.androiddevchallenge.data.Dog
 import com.example.androiddevchallenge.home.OnListItemClicked
 import com.example.androiddevchallenge.home.PuppyHome
 import com.example.androiddevchallenge.home.SplashScreen

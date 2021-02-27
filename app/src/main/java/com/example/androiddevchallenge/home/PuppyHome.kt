@@ -1,8 +1,6 @@
 package com.example.androiddevchallenge.home
 
-import android.net.Uri
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -15,21 +13,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.base.PuppyDrawer
-import com.example.androiddevchallenge.data.Dog
+import com.example.androiddevchallenge.data.Puppy
 import com.example.androiddevchallenge.data.PuppySource
 import dev.chrisbanes.accompanist.coil.CoilImage
 import kotlinx.coroutines.launch
 
-typealias OnListItemClicked = (Dog) -> Unit
+typealias OnListItemClicked = (Puppy) -> Unit
 
 @Composable
 fun PuppyHome(
@@ -61,7 +57,7 @@ fun PuppyHomeContent(
     modifier: Modifier = Modifier,
     onListItemClicked: OnListItemClicked,
     openDrawer: () -> Unit,
-    puppyList: List<Dog>
+    puppyList: List<Puppy>
 ) {
     Column {
         TopAppBar(
@@ -104,7 +100,7 @@ fun PuppyHomeContent(
 @Composable
 private fun PuppyItem(
     modifier: Modifier = Modifier,
-    item: Dog,
+    item: Puppy,
     onListItemClicked: OnListItemClicked
 ) {
     Row(
