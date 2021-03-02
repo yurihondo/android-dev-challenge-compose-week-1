@@ -18,6 +18,10 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.navArgument
+import androidx.navigation.compose.navigate
+import androidx.navigation.compose.rememberNavController
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.base.PuppyDrawer
 import com.example.androiddevchallenge.data.Puppy
@@ -29,7 +33,7 @@ typealias OnListItemClicked = (Puppy) -> Unit
 
 @Composable
 fun PuppyHome(
-    onListItemClicked: OnListItemClicked,
+    navController: NavController,
     modifier: Modifier = Modifier
 ) {
     val drawerState = rememberDrawerState(DrawerValue.Open)
@@ -40,8 +44,8 @@ fun PuppyHome(
     ) {
         val scope = rememberCoroutineScope()
         PuppyHomeContent(
+            navController = navController,
             modifier = modifier,
-            onListItemClicked = onListItemClicked,
             openDrawer = {
                 scope.launch {
                     drawerState.open()
@@ -54,8 +58,8 @@ fun PuppyHome(
 
 @Composable
 fun PuppyHomeContent(
+    navController: NavController,
     modifier: Modifier = Modifier,
-    onListItemClicked: OnListItemClicked,
     openDrawer: () -> Unit,
     puppyList: List<Puppy>
 ) {
@@ -85,9 +89,11 @@ fun PuppyHomeContent(
                         Column(Modifier.fillParentMaxWidth()) {
                             PuppyItem(
                                 modifier = Modifier.fillParentMaxWidth(),
-                                item = exploreItem,
-                                onListItemClicked = onListItemClicked
-                            )
+                                item = exploreItem
+                            ) { puppy ->
+                                navController.currentBackStackEntry?.arguments?.putSerializable("data", puppy)
+                                navController.navigate("details")
+                            }
                             Divider(color = Color.LightGray)
                         }
                     }
