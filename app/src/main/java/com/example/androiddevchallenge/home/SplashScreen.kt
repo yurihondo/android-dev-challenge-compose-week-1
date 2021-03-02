@@ -32,7 +32,9 @@ fun SplashScreen(modifier: Modifier = Modifier, onTimeout: () -> Unit) {
         Image(
             painter = painterResource(id = R.drawable.ic_dog_drawer),
             contentDescription = null,
-            modifier = Modifier.width(72.dp).height(92.dp)
+            modifier = Modifier
+                .width(72.dp)
+                .height(92.dp)
         )
     }
 }

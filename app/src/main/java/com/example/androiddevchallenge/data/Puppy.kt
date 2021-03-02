@@ -10,4 +10,4 @@ data class Puppy(
     val breed: String,
     val imageUrl: String,
     val description: String = ""
-): Serializable
+) : Serializable
