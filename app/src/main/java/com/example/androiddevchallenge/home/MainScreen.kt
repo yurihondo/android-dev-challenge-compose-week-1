@@ -16,10 +16,15 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
+var isFirstLaunch = true
+
 @Composable
 fun MainScreen(navController: NavController) {
     Surface(color = MaterialTheme.colors.primary) {
-        val transitionState = remember { MutableTransitionState(SplashState.Shown) }
+        val transitionState = remember {
+            if (isFirstLaunch) MutableTransitionState(SplashState.Shown)
+            else MutableTransitionState(SplashState.Completed)
+        }
         val transition = updateTransition(transitionState)
         val splashAlpha by transition.animateFloat(
             transitionSpec = { tween(durationMillis = 100) }
@@ -38,10 +43,15 @@ fun MainScreen(navController: NavController) {
         }
 
         Box {
-            SplashScreen(
-                modifier = Modifier.alpha(splashAlpha),
-                onTimeout = { transitionState.targetState = SplashState.Completed }
-            )
+            if (isFirstLaunch) {
+                SplashScreen(
+                    modifier = Modifier.alpha(splashAlpha),
+                    onTimeout = {
+                        isFirstLaunch = false
+                        transitionState.targetState = SplashState.Completed
+                    }
+                )
+            }
             MainContent(
                 navController = navController,
                 modifier = Modifier.alpha(contentAlpha),

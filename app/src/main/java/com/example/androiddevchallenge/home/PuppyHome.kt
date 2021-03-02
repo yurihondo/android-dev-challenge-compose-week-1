@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -19,9 +20,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.navigate
-import androidx.navigation.compose.rememberNavController
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.base.PuppyDrawer
 import com.example.androiddevchallenge.data.Puppy
@@ -91,7 +90,10 @@ fun PuppyHomeContent(
                                 modifier = Modifier.fillParentMaxWidth(),
                                 item = exploreItem
                             ) { puppy ->
-                                navController.currentBackStackEntry?.arguments?.putSerializable("data", puppy)
+                                navController.currentBackStackEntry?.arguments?.putSerializable(
+                                    "data",
+                                    puppy
+                                )
                                 navController.navigate("details")
                             }
                             Divider(color = Color.LightGray)
@@ -111,8 +113,9 @@ private fun PuppyItem(
 ) {
     Row(
         modifier = modifier
+            .size(84.dp)
             .clickable { onListItemClicked(item) }
-            .padding(top = 12.dp, bottom = 12.dp)
+            .padding(top = 12.dp, bottom = 12.dp),
     ) {
         PuppyImageContainer {
             CoilImage(
@@ -143,6 +146,21 @@ private fun PuppyItem(
             Text(
                 text = item.breed,
                 style = MaterialTheme.typography.caption.copy(color = Color.DarkGray)
+            )
+        }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(),
+            horizontalArrangement = Arrangement.End,
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Image(
+                modifier = Modifier
+                    .wrapContentWidth()
+                    .wrapContentHeight(),
+                painter = rememberVectorPainter(Icons.Filled.Favorite),
+                contentDescription = ""
             )
         }
     }
